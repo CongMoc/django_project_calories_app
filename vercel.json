@@ -1,11 +1,1 @@
-{
-    "build": [{
-        "src": "Calories/wsgi.py",
-        "use": "@vercel/python",
-        "config": {"maxLambdSize":"15mb","runtime":"python3.10"}
-    }],
-    "routes": [{
-        "src":"/(.*)",
-        "dest": "Calories/wsgi.py"
-    }]
-}
+
