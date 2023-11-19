@@ -2,175 +2,120 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<div class="background" style="display: flex;">
-    <div class="row">
-        <div class="col" style="flex-basis: 50%;font-family: cursive;">
-        <b><h1>Calories</h1></b>
-        <p>Calories are units of energy that a food or drink provides. 
-        You can usually find calorie counts listed on food items, and wearables like the best fitness trackers allow you monitor
-        how many calories you're burning by doing different activities</p>
-        <button class="button-calories" type="button">Calories</button>
-        </div>
-    </div>
-    <section class="home">
-        <a href="exercise/">
-            <div class="carousel-inner">
-                <div class="carousel-item active" style="background-image: url('https://i.pinimg.com/564x/a6/fd/10/a6fd10646a09a8a78b108adaf49de5f1.jpg')">
-                    <div class="container">
-                        <h2>Exercise</h2>
+<link href="{% static 'base.css' %}" type="text/css" rel="stylesheet">
+<form method="post" action="/home/" class="form-group">
+<div class="content">
+    <div class="Healthy">
+        <a href="/exercise">
+            <div class="Exercise">
+                <div class="slide-exercise" style="background-image: url('https://i.pinimg.com/564x/a6/fd/10/a6fd10646a09a8a78b108adaf49de5f1.jpg')">
+                    <div class="text-image">
+                        <h1>Exercise</h1>
                         <p>Exercise helps you burn calories and maintain a healthy weight, reducing the risk of obesity.</p>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('https://i.pinimg.com/564x/2e/4d/61/2e4d6110d386810679e29bcd295edade.jpg')">
-                    <div class="container">
-                        <h2>Exercise</h2>
-                            <p>Regular exercise strengthens your heart and circulatory system, reducing the risk of heart disease and high blood pressure.</p>
-                    </div>
-                </div>
-                <div class="carousel-item" style="background-image: url('https://i.pinimg.com/564x/eb/87/2c/eb872c4de96f54f12cc2ebeec0fb2ebe.jpg')">
-                    <div class="container">
-                        <h2>Exercise</h2>
-                        <p>Weight-bearing exercises can increase muscle mass and bone density, reducing the risk of osteoporosis.</p>
-                    </div>
-                </div>
-                <div class="carousel-item"  style="background-image: url('https://i.pinimg.com/564x/8b/5b/09/8b5b096421b550d97dfc80dc722ee8e8.jpg')">
-                    <div class="container">
-                        <h2>Exercise</h2>
-                        <p>Activities like yoga and stretching can improve flexibility and balance, reducing the risk of injury.</p>
-                    </div>
-                </div>
-                <div class="carousel-item"style="background-image: url('https://i.pinimg.com/564x/d9/34/ce/d934ceed59312e0de77890a60316c518.jpg')">
-                    <div class="container">
-                        <h2>Exercise</h2>
+                <div class="slide-exercise" style="background-image: url('https://i.pinimg.com/564x/d9/34/ce/d934ceed59312e0de77890a60316c518.jpg')">
+                    <div class="text-image">
+                        <h1>Exercise</h1>
                         <p>Exercise releases endorphins, which can help alleviate stress and improve your mood.</p>
                     </div>
                 </div>
-            </div>       
+                <div class="slide-exercise" style="background-image: url('https://i.pinimg.com/564x/8b/5b/09/8b5b096421b550d97dfc80dc722ee8e8.jpg');">
+                    <div class="text-image">
+                        <h1>Exercise</h1>
+                        <p>Activities like yoga and stretching can improve flexibility and balance, reducing the risk of injury.</p>
+                    </div>
+                </div>
+                <div class="slide-exercise" style="background-image: url('https://i.pinimg.com/564x/eb/87/2c/eb872c4de96f54f12cc2ebeec0fb2ebe.jpg');">
+                    <div class="text-image">
+                        <h1>Exercise</h1>
+                        <p>Weight-bearing exercises can increase muscle mass and bone density, reducing the risk of osteoporosis.</p>
+                    </div>
+                </div>
+                <div class="slide-exercise"  style="background-image: url('https://i.pinimg.com/564x/2e/4d/61/2e4d6110d386810679e29bcd295edade.jpg');">
+                    <div class="text-image">
+                        <h1>Exercise</h1>
+                        <p>Regular exercise strengthens your heart and circulatory system, reducing the risk of heart disease and high blood pressure.</p>
+                    </div>
+                </div>
+            </div>
         </a>
-    </section>
+        <a href="/food">
+            <div class="Food">
+                <div class="slide-food" style="background-image: url('https://i.pinimg.com/564x/73/35/34/73353454e5844ea81ce617517931f1c4.jpg')">
+                    <div class="text-image">
+                        <h1>Food Healthy</h1>
+                        <p>A healthy diet can help you maintain a healthy weight and reduce the risk of obesity.</p>
+                    </div>
+                </div>
+                <div class="slide-food" style="background-image: url('https://i.pinimg.com/564x/74/4f/12/744f122a7cfc819a208d017b1b740ed4.jpg');">
+                    <div class="text-image">
+                        <h1>Food Healthy</h1>
+                        <p>Eating a diet rich in fruits, vegetables, whole grains can lower your risk of developing chronic diseases such as heart disease.</p>
+                    </div>
+                </div>
+                <div class="slide-food" style="background-image: url('https://i.pinimg.com/564x/b2/32/0b/b2320b6afc973f8decc0fba027dc731b.jpg');">
+                    <div class="text-image">
+                        <h1>Food Healthy</h1>
+                        <p>High-fiber foods can promote regular bowel movements.</p>
+                    </div>
+                </div>
+                <div class="slide-food" style="background-image: url('https://i.pinimg.com/564x/16/0d/33/160d33e33e636e7246108dda57f94a24.jpg');">
+                    <div class="text-image">
+                        <h1>Food Healthy</h1>
+                        <p>Making your body more resilient to infections and illnesses.</p>
+                    </div>
+                </div>
+                <div class="slide-food" style="background-image: url('https://i.pinimg.com/564x/ca/be/0f/cabe0f11508262c8c4f24af2f2110d53.jpg');">
+                    <div class="text-image">
+                        <h1>Food Healthy</h1>
+                        <p>A diet low in sugary and acidic foods can help prevent dental cavities and gum disease.</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="Calories">
+        <div class="Calories-item">
+            <h2>Calories</h2>
+            <p>You can usually find calorie counts listed on food items,
+            and wearables like the best fitness trackers allow you monitor 
+            how many calories you're burning by doing different activities
+            </p>
+            <a href="/calories">
+                <button class="button-calculator" role="button">Calories</button>
+            </a>
+        </div>
+    </div>
 </div>
-<style>
-    .home .carousel-inner{
-        display: inline-block;
-        border-radius: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        cursor: pointer;
-        transition: transform 0.2s;
+<script>
+    // JavaScript for automatic slide change
+    let currentIndex1 = 0;
+    const slides1 = document.querySelectorAll('.slide-exercise');
+    function showSlide1(index) {
+      slides1.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
     }
-    .home .carousel-inner:hover{
-        transform: translateY(-15px);
+    function nextSlide1() {
+      currentIndex1 = (currentIndex1 + 1) % slides1.length;
+      showSlide1(currentIndex1);
     }
-    .home .carousel-item{
-        min-height: 80vh;
-        background-position:center;
-        background-size:cover;
-        position: relative;
-        z-index: 1;
-        top: 0;
+    setInterval(nextSlide1, 3000);
+    showSlide1(currentIndex1);
+    let currentIndex2 = 0;
+    const slides2 = document.querySelectorAll('.slide-food');
+    function showSlide2(index) {
+      slides2.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
     }
-    .home .carousel-item:before{
-        content: '';
-        position: absolute;
-        left:0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: -1;
-        border-radius: 20px;
+    function nextSlide2() {
+      currentIndex2 = (currentIndex2 + 1) % slides2.length;
+      showSlide2(currentIndex2);
     }
-    .home .carousel-item .container{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        text-align: bottom;
-    }
-    .home .carousel-item h2{
-        text-align:center;
-        font-size: 20px;
-        color: #FFFFFF;
-        margin:0 0 10px;
-        opacity: 0;
-        font-family: cursive;
-    }
-    .home .carousel-item p{
-        font-size: 12px;
-        color: #eee;
-        margin-top: 0;
-        opacity: 0;
-        font-family: cursive;
-    }
-    .home .carousel-item.active h2{
-        animation: fadeInLeft 0.5s ease forwards;
-    }
-    .home .carousel-item.active p{
-        animation: fadeInRight 0.5s ease forwards;
-    }
-    @keyframes fadeInLeft {
-        0%{
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        100%{
-            opacity: 1;
-            transform: translateX(0px);
-        }
-    }
-    @keyframes fadeInRight {
-        0%{
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        100%{
-            opacity: 1;
-            transform: translateX(0px);
-        }
-    }
-    .row{
-        display: flex;
-        height: 88%;
-        align-items: center;
-        margin-top: 150px;
-    }
-    .row h1{
-        margin-left: 20px;
-        font-size: 80px;
-    }
-    .row p{
-        margin-left: 20px;
-        margin-right: 30px;
-        word-wrap: break-word;
-        text-align: left;
-        font-size: 15px;
-    }
-    .col{
-        flex-basis: 50%;
-        font-family: cursive;
-    }
-    .home{
-        width: 50%;
-        margin-right: 25%;
-    }
-    .row .button-calories{
-        width: 180px;
-        background-color: #F5BA64;
-        font-size:20px ;
-        padding: 12px 0;
-        border: 0;
-        border-radius: 50px;
-        outline: none;
-        margin-top: 10px;
-        margin-left: 70px;
-    }
-</style>
-
+    setInterval(nextSlide2, 3000);
+    showSlide2(currentIndex2);
+  </script>
+</form>
 {% endblock %}

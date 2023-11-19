@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Calories{% endblock %}</title>  
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <ul>
+                <li><a>Home</a></li>
+                <li><a>Calories</a></li>
+                <li><a>About</a></li>
+                <li><a>Contact</a></li>
+                <li><a>Main</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <div class="footer">
+
+        </div>
+    </div>    
+    <style>
+        *{
+    box-sizing: border-box;
+}
+body{
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.container .header{
+    width: 100%;
+    height: 50px;
+    background-color: green;
+}
+
+.container .header li{
+    display: inline;
+    text-decoration: none;
+
+}
+
+.header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+  
+.header li {
+    float: left;
+  }
+  
+.header li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+ .header li a:hover {
+    background-color: #111;
+  }
+    </style>
+</body>
+</html>

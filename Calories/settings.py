@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mysite.apps.MysiteConfig'
+    'mysite.apps.MysiteConfig',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'Calories.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'elderco',
+        'USER':'root',
+        'PASSWORD': 'password123',
+        'HOST': 'localhost',
+        
     }
 }
 
@@ -120,11 +124,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'Calories/static/')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Active Heroku
-django_heroku.settings(locals())
