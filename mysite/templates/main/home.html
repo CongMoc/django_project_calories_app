@@ -1,8 +1,9 @@
-{% extends "main/base.html" %} {% load static %} {% block content %}
+{% extends "main/base.html" %} 
+{% load static %} 
+{% block content %} 
 {% if user.is_authenticated %}
-<div class="content">
   <div class="Healthy">
-    <a href="/calories">
+    <a href="{% url 'exercise' %}">
       <div class="Exercise">
         <div
           class="slide-exercise"
@@ -55,8 +56,8 @@
           <div class="text-image">
             <h1>Exercise</h1>
             <p>
-              Weight-bearing exercises can increase muscle mass and bone
-              density, reducing the risk of osteoporosis.
+              Weight-bearing exercises can increase muscle mass and bone density,
+              reducing the risk of osteoporosis.
             </p>
           </div>
         </div>
@@ -76,7 +77,7 @@
         </div>
       </div>
     </a>
-    <a href="/food">
+    <a href="{% url 'food' %}">
       <div class="Food">
         <div
           class="slide-food"
@@ -87,8 +88,8 @@
           <div class="text-image">
             <h1>Food Healthy</h1>
             <p>
-              A healthy diet can help you maintain a healthy weight and reduce
-              the risk of obesity.
+              A healthy diet can help you maintain a healthy weight and reduce the
+              risk of obesity.
             </p>
           </div>
         </div>
@@ -147,18 +148,278 @@
   </div>
   <div class="Calories">
     <div class="Calories-item">
+      {% if calories %}
+      <h1>{{calories.calories}} Calories</h1>
+      <h1>Body: {{calories.body_condition}} </h1>
+      {% else %}
       <h2>Calories</h2>
       <p>
         You can usually find calorie counts listed on food items, and wearables
-        like the best fitness trackers allow you monitor how many calories
-        you're burning by doing different activities
+        like the best fitness trackers allow you monitor how many calories you're
+        burning by doing different activities
       </p>
-      <a href="/calories">
-        <button class="button-calculator" role="button">Calories</button>
+      {% endif%}
+      <a href="{% url 'add-calories' %}">
+        <button type="submit" class="button-calculator" role="button">
+          Calories
+        </button>
       </a>
-    </div>
   </div>
+  </div>
+ {% else %}
+<div class="content-login">
+  <h1>Login</h1>
+  <br />
+  <form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        placeholder="Username"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-warning">Login</button>
+  </form>
 </div>
+{% endif %}
+<style>
+  .content-login {
+    width: 40%;
+    padding: 0;
+    margin-left: 30%;
+    display: block;
+  }
+
+  .Calories {
+    width: 50%;
+    height: 99.5%;
+    margin-top: 0px;
+    float: right;
+  }
+  .Calories .Calories-item {
+    width: 80%;
+    height: 30%;
+    margin-left: 10%;
+    margin-top: 20%;
+  }
+  .Calories .Calories-item h2 {
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
+  }
+  .Calories-item .button-calculator {
+    appearance: none;
+    background-color: #f5ba64;
+    border: 2px solid #f5ba64;
+    border-radius: 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: cursive;
+    margin-right: 0;
+    min-height: 60px;
+    outline: none;
+    text-align: center;
+    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 150px;
+    will-change: transform;
+  }
+  .button-calculator:disabled {
+    pointer-events: none;
+  }
+
+  .button-calculator:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 10px 15px;
+    transform: translateY(-5px);
+  }
+  .button-calculator:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+  .Healthy {
+    width: 50%;
+    height: 100%;
+    float: right;
+    display: block;
+  }
+  .Healthy .Exercise {
+    width: 45%;
+    height: 90%;
+    margin-top: 2%;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    float: left;
+  }
+  .slide-exercise {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .slide-exercise img {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+  }
+  .slide-exercise:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  .slide-exercise .text-image {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+  .slide-exercise h1 {
+    font-size: 30px;
+    color: #ffffff;
+    margin: 0 0 10px;
+    opacity: 0;
+    -webkit-text-stroke: 2px black;
+    text-stroke: 2px black;
+  }
+  .slide-exercise p {
+    font-size: 15px;
+    margin: 0;
+    color: #f5ba64;
+    opacity: 0;
+    -webkit-text-stroke: 1px #f5ba64;
+    text-stroke: 1px #f5ba64;
+  }
+  .slide-exercise h1 {
+    animation: fadeInLeft 0.5s ease forwards;
+  }
+  .slide-exercise p {
+    animation: fadeInRight 0.5s ease forwards;
+  }
+  .Exercise:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.5) 0 15px 20px;
+  }
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  .Food {
+    width: 45%;
+    height: 90%;
+    margin-top: 2%;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    margin-left: 5%;
+    float: left;
+  }
+  .Food:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(0, 0, 0, 0.5) 0 15px 20px;
+  }
+  .slide-food {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .slide-food img {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+  }
+  .slide-food:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  .slide-food .text-image {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+  .slide-food h1 {
+    font-size: 30px;
+    color: #ffffff;
+    margin: 0 0 10px;
+    opacity: 0;
+    -webkit-text-stroke: 2px black;
+    text-stroke: 2px black;
+  }
+  .slide-food p {
+    font-size: 15px;
+    margin: 0;
+    color: #c1f66a;
+    opacity: 0;
+    -webkit-text-stroke: 1px #c1f66a;
+    text-stroke: 1px #c1f66a;
+  }
+  .slide-food h1 {
+    animation: fadeInLeft 0.5s ease forwards;
+  }
+  .slide-food p {
+    animation: fadeInRight 0.5s ease forwards;
+  }
+</style>
+{% endblock %}
 <script>
   // JavaScript for automatic slide change
   let currentIndex1 = 0;
@@ -188,253 +449,3 @@
   setInterval(nextSlide2, 3000);
   showSlide2(currentIndex2);
 </script>
-{% else %}
-<div class="content-login">
-    <h1>Login</h1>
-    <br/>
-    <form method="POST" action="{% url 'home' %}">
-        {% csrf_token %}
-        <div class="mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Username" required>
-        </div>
-        <div class="mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn btn-warning">Login</button>
-    </form>
-    </div>
-{% endif %}
-
-<style>
-    .content-login{
-        width: 40%;
-        height: 70vh;
-        padding: 0;
-        margin-left: 30%;
-        display: block;
-    }
-    .content {
-  width: 100%;
-  height: 100vh;
-  padding: 0;
-  margin: 0px;
-  display: block;
-}
-.content .Calories {
-  width: 50%;
-  height: 99.5%;
-  margin-top: 0px;
-  float: right;
-}
-.Calories .Calories-item {
-  width: 80%;
-  height: 30%;
-  margin-left: 10%;
-  margin-top: 20%;
-}
-.content .Calories .Calories-item h2 {
-  font-size: 40px;
-  padding: 0;
-  margin: 0;
-}
-.Calories-item .button-calculator {
-  appearance: none;
-  background-color: #f5ba64;
-  border: 2px solid #f5ba64;
-  border-radius: 20px;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: cursive;
-  margin-right: 0;
-  min-height: 60px;
-  outline: none;
-  text-align: center;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 150px;
-  will-change: transform;
-}
-.button-calculator:disabled {
-  pointer-events: none;
-}
-
-.button-calculator:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0 10px 15px;
-  transform: translateY(-5px);
-}
-.button-calculator:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-.content .Healthy {
-  width: 50%;
-  height: 100%;
-  float: right;
-}
-.Healthy .Exercise {
-  width: 45%;
-  height: 80%;
-  margin-top: 5%;
-  overflow: hidden;
-  border-radius: 20px;
-  position: relative;
-  float: left;
-}
-.slide-exercise {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
-  text-align: center;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.slide-exercise img {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  object-fit: cover;
-}
-.slide-exercise:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-.slide-exercise .text-image {
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-.slide-exercise h1 {
-  font-size: 30px;
-  color: #ffffff;
-  margin: 0 0 10px;
-  opacity: 0;
-  -webkit-text-stroke: 2px black;
-  text-stroke: 2px black;
-}
-.slide-exercise p {
-  font-size: 15px;
-  margin: 0;
-  color: #f5ba64;
-  opacity: 0;
-  -webkit-text-stroke: 1px #f5ba64;
-  text-stroke: 1px #f5ba64;
-}
-.slide-exercise h1 {
-  animation: fadeInLeft 0.5s ease forwards;
-}
-.slide-exercise p {
-  animation: fadeInRight 0.5s ease forwards;
-}
-.Exercise:hover {
-  transform: translateY(-10px);
-  box-shadow: rgba(0, 0, 0, 0.5) 0 15px 20px;
-}
-@keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-.content .Food {
-  width: 45%;
-  height: 80%;
-  margin-top: 5%;
-  overflow: hidden;
-  border-radius: 20px;
-  position: relative;
-  margin-left: 5%;
-  float: left;
-}
-.Food:hover {
-  transform: translateY(-10px);
-  box-shadow: rgba(0, 0, 0, 0.5) 0 15px 20px;
-}
-.slide-food {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
-  text-align: center;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.slide-food img {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  object-fit: cover;
-}
-.slide-food:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-.slide-food .text-image {
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-.slide-food h1 {
-  font-size: 30px;
-  color: #ffffff;
-  margin: 0 0 10px;
-  opacity: 0;
-  -webkit-text-stroke: 2px black;
-  text-stroke: 2px black;
-}
-.slide-food p {
-  font-size: 15px;
-  margin: 0;
-  color: #c1f66a;
-  opacity: 0;
-  -webkit-text-stroke: 1px #c1f66a;
-  text-stroke: 1px #c1f66a;
-}
-.slide-food h1 {
-  animation: fadeInLeft 0.5s ease forwards;
-}
-.slide-food p {
-  animation: fadeInRight 0.5s ease forwards;
-}
-
-</style>
-{% endblock %}

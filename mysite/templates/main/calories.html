@@ -2,9 +2,9 @@
 
 {% block content %}
 <h1>Main Calories, Food and Exercise</h1>
-<form method="POST">
+<form method="POST" action="{% url 'calories' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    
+    <button type="submit" class="btn btn-secondary">Update Record</button>
 </form>
 {% endblock %}

@@ -1,17 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Information_User(models.Model):
-    username = models.CharField(null=True,max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Information_User',null= True, unique=True)
     age = models.IntegerField(null=True,)
     gender = models.CharField(null=True,max_length=10)
     height = models.IntegerField(null=True,)
     weight = models.IntegerField(null=True,)
-    food_allergies = models.CharField(null=True,max_length=20)
     time_exercise_week = models.CharField(null=True,max_length=20)
     time_exercise_day = models.CharField(null=True,max_length=20)
-    category_food = models.CharField(null=True,max_length=50)
-    category_exercise = models.CharField(null=True,max_length=50)
+    target = models.CharField(null=True, max_length=20)
     body_condition = models.CharField(null=True,max_length=20)
     calories = models.FloatField(null=True)
 
@@ -20,14 +19,14 @@ class Information_User(models.Model):
 
 
 class Food(models.Model):
-    Food_Image = models.ImageField(null=True, blank=True, upload_to='images/')
-    Category_Food = models.CharField(max_length=20)
+    foodImage = models.ImageField(null=True, blank=True, upload_to='images/')
+    categoryFood = models.CharField(max_length=20)
 
     def __str__(self):
         return (f"{self.Food_Image}")
 
 class Exercise(models.Model):
-    Exercise_Image = models.ImageField(null=True, blank=True,upload_to='images/')
-    Category_Exercise = models.CharField(max_length=20)
+    exerciseImage = models.ImageField(null=True, blank=True,upload_to='images/')
+    categoryExercise = models.CharField(max_length=20)
     def __str__(self):
         return (f"{self.Exercise_Image}")

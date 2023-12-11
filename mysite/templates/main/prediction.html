@@ -1,0 +1,14 @@
+{% extends "main/base.html" %} 
+{% load static %} 
+
+{% block content %} 
+<div class="col-md-6 offset-md-3">
+    <h1>Add information to prediction</h1><br/>
+    <form method="POST" action="{% url 'add-calories'%}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-secondary">Prediction</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+{% endblock%}

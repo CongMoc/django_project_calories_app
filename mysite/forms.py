@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Information_User
+from .models import Information_User, Food, Exercise
 
 
 class SignUpForm(UserCreationForm):
@@ -32,15 +32,24 @@ class SignUpForm(UserCreationForm):
 
 
 class AddInformationToPrediction(forms.ModelForm):
-    username = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Full Name","class":"form-control"}), label="")
-    age = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Age","class":"form-control"}), label="")
-    gender = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Gender","class":"form-control"}), label="")
-    height = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Height","class":"form-control"}), label="")
-    weight = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Weight","class":"form-control"}), label="")
-    food_allergies = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Food Allergies","class":"form-control"}), label="")
-    time_exercise_week = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Time exercise in week","class":"form-control"}), label="")
-    time_exercise_day =forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Time exercise in day","class":"form-control"}), label="")
+    age = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Age","class":"form-control"}), label="")
+    gender = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Gender(Male or Female)","class":"form-control"}), label="")
+    height = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Height(cm)","class":"form-control"}), label="")
+    weight = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Weight(kg)","class":"form-control"}), label="")
+    time_exercise_week = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Time exercise in week(Example: No exercise or 1 - 3 days per week)","class":"form-control"}), label="")
+    time_exercise_day =forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Time exercise in day(Example: 30 minutes)","class":"form-control"}), label="")
+    target = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Target(Loss weight or Build body healthy)","class":"form-control"}), label="")
 
     class Meta:
         model = Information_User
-        exclude = ("user",)
+        fields = ['age','gender','height','weight','time_exercise_week','time_exercise_day','target']
+
+class FoodForm(forms.ModelForm):
+    class Meta:
+        model = Food
+        fields = ['foodImage', 'categoryFood']
+
+class ExerciseForm(forms.ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ['exerciseImage','categoryExercise']

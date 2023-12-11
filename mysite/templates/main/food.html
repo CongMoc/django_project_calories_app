@@ -1,0 +1,11 @@
+{% extends 'main/base.html'%}
+{% load static %} 
+{% block content %}
+{% for food in foods %}
+        <img src="{{food.Food_Image.url}}">
+{% endfor %}
+{% endblock%}
+
+<style>
+
+</style>
